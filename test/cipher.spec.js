@@ -52,22 +52,37 @@ describe('cipher', () => {
 		});
 
 		describe('decode with wrong secret', () => {
-			let decoded;
-			before(() => decoded = cipher('another secret').decode({iv: encoded.iv, data: encoded.data}));
+			let decode;
+			before(() => decode = cipher('another secret').decode.bind(null, {iv: encoded.iv, data: encoded.data}));
 
-			it('should return null', () => {
-				expect(decoded).to.eql(null);
+			it('should throw error', () => {
+				expect(decode).to.throw('Error during decoding').with.property('internalError');
 			});
 		});
 
 		describe('decode with wrong iv', () => {
 			const iv = crypto.randomBytes(16).toString('hex');
-			let decoded;
-			before(() => decoded = cipher(secret).decode({iv, data: encoded.data}));
+			let decode;
+			before(() => decode = cipher(secret).decode.bind(null, {iv, data: encoded.data}));
 
-			it('should return null', () => {
-				expect(decoded).to.eql(null);
+			it('should throw error', () => {
+				expect(decode).to.throw('Error during decoding').with.property('internalError');
 			});
 		});
+	});
+
+	describe('encode with invalid data', () => {
+		const originalData = {};
+		originalData.circular = originalData;
+
+		const secret = 'test secret';
+		let encode;
+
+		before(() => encode = cipher(secret).encode.bind(null, originalData));
+
+		it('should throw error', () => {
+			expect(encode).to.throw('Error during encoding').with.property('internalError');
+		});
+
 	});
 });

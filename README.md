@@ -14,14 +14,21 @@ npm i -SE @debitoor/cipher
 ```javascript
 const cipher = require('@debitoor/cipher')('secret');
 
-const encoded = cipher.encode({userId: '123456'});
-console.log(encoded); // { iv: 'eb0911c423161f0488337e5007887581', data: 'fd9612df14729ec373214f151b62fab74f8d7c5756082e4d057632dc5ea8d088' }
+try {
+    const encoded = cipher.encode({userId: '123456'});
+    console.log(encoded); // { iv: 'eb0911c423161f0488337e5007887581', data: 'fd9612df14729ec373214f151b62fab74f8d7c5756082e4d057632dc5ea8d088' }
+    
+    const decoded = cipher.decode(encoded);
+    console.log(decoded); // { userId: '123456' }
 
-const decoded = cipher.decode(encoded);
-console.log(decoded); // { userId: '123456' }
+} catch (e) {
+	// Handle error during encoding/decoding
+}
+
+
 ```
 
 ### API
 * **cipher(secret)** - return cipher instanse with given secret key
-* **cipherInstanse.encode(json)** - encode object with secret and random initialization vector. Returns `{iv, data}` - where iv - initialization vector, data - encoded object
-* **cipherInstanse.decode({iv, data})** - decode previously encoded object. Takes `{iv, data}` as argument where iv - initialization vector, data - encoded object
+* **cipherInstanse.encode(json)** - encode object with secret and random initialization vector. Returns `{iv, data}` where iv - initialization vector, data - encoded object. Throws error if json is invalid.
+* **cipherInstanse.decode({iv, data})** - decode previously encoded object. Takes `{iv, data}` as argument where iv - initialization vector, data - encoded object. Throws error if wrong secret key or incorrect data provided.
