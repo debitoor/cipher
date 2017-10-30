@@ -1,0 +1,38 @@
+{
+  "name": "@debitoor/cipher",
+  "version": "1.0.0",
+  "description": "Encrypt/decrypt data",
+  "readmeFilename": "README.md",
+  "main": "index.js",
+  "scripts": {
+    "teamcity": "./bin/teamcity.sh",
+    "test": "istanbul cover _mocha",
+    "coveralls": "coveralls < ./coverage/lcov.info || echo 'problem with reporting to coveralls'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/debitoor/cipher.git"
+  },
+  "keywords": [
+    "encrypt",
+    "decrypt"
+  ],
+  "author": "Debitoor",
+  "bugs": {
+    "url": "https://github.com/debitoor/cipher/issues"
+  },
+  "homepage": "https://github.com/debitoor/cipher#readme",
+  "devDependencies": {
+    "@debitoor/eslint-config-debitoor": "1.7.0",
+    "@debitoor/mocha-strict-dependencies": "1.1.0",
+    "chai": "4.1.2",
+    "chai-subset": "1.6.0",
+    "coveralls": "3.0.0",
+    "istanbul": "0.4.5",
+    "mocha": "4.0.1",
+    "mocha-eslint": "4.1.0"
+  },
+  "files": [
+    "index.js"
+  ]
+}
