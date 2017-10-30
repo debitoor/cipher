@@ -2,6 +2,8 @@ const crypto = require('crypto');
 
 const ALGORITHM = 'aes-256-cbc';
 const BLOCK_SIZE = 16;
+const ORIGINAL_ENCODING = 'utf8';
+const ENCODED_ENCODING = 'hex';
 
 function getKey(secret) {
 	return crypto.createHash('sha256').update(secret).digest();
@@ -13,19 +15,20 @@ function generateIv() {
 
 function encode(key, json) {
 	const str = JSON.stringify(json);
-	const iv = generateIv();
-	const cipher = crypto.createCipheriv(ALGORITHM, key, iv);
-	const encryptedStr = cipher.update(str, 'utf8', 'hex') + cipher.final('hex');
+	const ivBuffer = generateIv();
+	const cipher = crypto.createCipheriv(ALGORITHM, key, ivBuffer);
+	const encryptedStr = cipher.update(str, ORIGINAL_ENCODING, ENCODED_ENCODING) + cipher.final(ENCODED_ENCODING);
 	return {
-		iv: iv.toString('hex'),
+		iv: ivBuffer.toString(ENCODED_ENCODING),
 		data: encryptedStr
 	};
 }
 
 function decode(key, {iv, data}) {
 	try {
-		const decipher = crypto.createDecipheriv(ALGORITHM, key, Buffer.from(iv, 'hex'));
-		const decryptedStr = decipher.update(data, 'hex', 'utf8') + decipher.final('utf8');
+		const ivBuffer = Buffer.from(iv, ENCODED_ENCODING);
+		const decipher = crypto.createDecipheriv(ALGORITHM, key, ivBuffer);
+		const decryptedStr = decipher.update(data, ENCODED_ENCODING, ORIGINAL_ENCODING) + decipher.final(ORIGINAL_ENCODING);
 		return JSON.parse(decryptedStr);
 	} catch (e) {
 		return null;
