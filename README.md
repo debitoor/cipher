@@ -1,7 +1,8 @@
 # cipher
 
-[![Build status](https://teamcity.debitoor.com/app/rest/builds/buildType(id:DebitoorUbuntu_Modules_Cipher)/statusIcon)](https://teamcity.debitoor.com/viewType.html?buildTypeId=DebitoorUbuntu_Modules_Cipher)
+[![Build Status](https://travis-ci.org/debitoor/cipher.svg?branch=master)](https://travis-ci.org/debitoor/cipher)
 [![Coverage Status](https://coveralls.io/repos/github/debitoor/cipher/badge.svg?branch=master&t=ZK1Tre)](https://coveralls.io/github/debitoor/cipher?branch=master)
+[![npm (scoped)](https://img.shields.io/npm/v/@debitoor/cipher.svg)](https://www.npmjs.com/package/@debitoor/cipher)
 
 Encrypt/decrypt objects using aes-256-cbc algorithm
 
@@ -30,5 +31,5 @@ try {
 
 ### API
 * **cipher(secret)** - return cipher instance with given secret key
-* **cipherInstanse.encrypt(json)** - encrypt object with secret and random initialization vector. Returns `{iv, data}` where iv - initialization vector, data - encrypted object. Throws error if json is invalid.
-* **cipherInstanse.decrypt({iv, data})** - decrypt previously encrypted object. Takes `{iv, data}` as argument where iv - initialization vector, data - encrypted object. Throws error if wrong secret key or incorrect data provided.
+* **cipherInstance.encrypt(json)** - encrypt object with secret and random initialization vector. Returns `{iv, data}` where iv - initialization vector, data - encrypted object. Throws error if json is invalid.
+* **cipherInstance.decrypt({iv, data})** - decrypt previously encrypted object. Takes `{iv, data}` as argument where iv - initialization vector, data - encrypted object. Throws error if wrong secret key or incorrect data provided.
