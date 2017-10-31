@@ -14,74 +14,74 @@ describe('cipher', () => {
 		let result;
 		before('init', () => result = cipher('test'));
 
-		it('should return object with encode and decode methods', () => {
+		it('should return object with encrypt and decrypt methods', () => {
 			expect(result).to.containSubset({
-				encode: (value) => typeof value === 'function',
-				decode: (value) => typeof value === 'function',
+				encrypt: (value) => typeof value === 'function',
+				decrypt: (value) => typeof value === 'function',
 			});
 		});
 	});
 
-	describe('encode', () => {
+	describe('encrypt', () => {
 		const originalData = {a: 1, b: 2};
 		const secret = 'test secret';
-		let encoded;
+		let encrypted;
 
-		before(() => encoded = cipher(secret).encode(originalData));
+		before(() => encrypted = cipher(secret).encrypt(originalData));
 
 		it('should return object', () => {
-			expect(encoded).to.be.an('object');
+			expect(encrypted).to.be.an('object');
 		});
 
 		it('should have iv property', () => {
-			expect(encoded).to.have.property('iv');
+			expect(encrypted).to.have.property('iv');
 		});
 
 		it('should have data property', () => {
-			expect(encoded).to.have.property('data');
+			expect(encrypted).to.have.property('data');
 		});
 
-		describe('decode', () => {
-			let decoded;
+		describe('decrypt', () => {
+			let decrypted;
 
-			before(() => decoded = cipher(secret).decode({iv: encoded.iv, data: encoded.data}));
+			before(() => decrypted = cipher(secret).decrypt({iv: encrypted.iv, data: encrypted.data}));
 
-			it('should return decoded data', () => {
-				expect(decoded).to.eql(originalData);
+			it('should return decrypted data', () => {
+				expect(decrypted).to.eql(originalData);
 			});
 		});
 
-		describe('decode with wrong secret', () => {
+		describe('decrypt with wrong secret', () => {
 			let decode;
-			before(() => decode = cipher('another secret').decode.bind(null, {iv: encoded.iv, data: encoded.data}));
+			before(() => decode = cipher('another secret').decrypt.bind(null, {iv: encrypted.iv, data: encrypted.data}));
 
 			it('should throw error', () => {
-				expect(decode).to.throw('Error during decoding').with.property('internalError');
+				expect(decode).to.throw('Error during decrypting').with.property('internalError');
 			});
 		});
 
-		describe('decode with wrong iv', () => {
+		describe('decrypt with wrong iv', () => {
 			const iv = crypto.randomBytes(16).toString('hex');
-			let decode;
-			before(() => decode = cipher(secret).decode.bind(null, {iv, data: encoded.data}));
+			let decrypt;
+			before(() => decrypt = cipher(secret).decrypt.bind(null, {iv, data: encrypted.data}));
 
 			it('should throw error', () => {
-				expect(decode).to.throw('Error during decoding').with.property('internalError');
+				expect(decrypt).to.throw('Error during decrypting').with.property('internalError');
 			});
 		});
 	});
 
-	describe('encode with invalid data', () => {
+	describe('encrypt with invalid data', () => {
 		const originalData = {};
 		originalData.circular = originalData;
 
 		const secret = 'test secret';
-		let encode;
+		let encrypt;
 
-		before(() => encode = cipher(secret).encode.bind(null, originalData));
+		before(() => encrypt = cipher(secret).encrypt.bind(null, originalData));
 
 		it('should throw error', () => {
-			expect(encode).to.throw('Error during encoding').with.property('internalError');
+			expect(encrypt).to.throw('Error during encrypting').with.property('internalError');
 		});
 
 	});
