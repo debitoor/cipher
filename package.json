@@ -17,6 +17,7 @@
     "decrypt"
   ],
   "author": "Debitoor",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/debitoor/cipher/issues"
   },
