@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/debitoor/cipher.svg?branch=master)](https://travis-ci.org/debitoor/cipher)
 [![Coverage Status](https://coveralls.io/repos/github/debitoor/cipher/badge.svg?branch=master&t=ZK1Tre)](https://coveralls.io/github/debitoor/cipher?branch=master)
+[![npm (scoped)](https://img.shields.io/npm/v/@debitoor/cipher.svg)](https://www.npmjs.com/package/@debitoor/cipher)
 
 Encrypt/decrypt objects using aes-256-cbc algorithm
 
