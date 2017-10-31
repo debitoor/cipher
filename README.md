@@ -1,6 +1,6 @@
 # cipher
 
-[![Build status](https://teamcity.debitoor.com/app/rest/builds/buildType(id:DebitoorUbuntu_Modules_Cipher)/statusIcon)](https://teamcity.debitoor.com/viewType.html?buildTypeId=DebitoorUbuntu_Modules_Cipher)
+[![Build Status](https://travis-ci.org/debitoor/cipher.svg?branch=master)](https://travis-ci.org/debitoor/cipher)
 [![Coverage Status](https://coveralls.io/repos/github/debitoor/cipher/badge.svg?branch=master&t=ZK1Tre)](https://coveralls.io/github/debitoor/cipher?branch=master)
 
 Encrypt/decrypt objects using aes-256-cbc algorithm
