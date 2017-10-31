@@ -31,5 +31,5 @@ try {
 
 ### API
 * **cipher(secret)** - return cipher instance with given secret key
-* **cipherInstanse.encrypt(json)** - encrypt object with secret and random initialization vector. Returns `{iv, data}` where iv - initialization vector, data - encrypted object. Throws error if json is invalid.
-* **cipherInstanse.decrypt({iv, data})** - decrypt previously encrypted object. Takes `{iv, data}` as argument where iv - initialization vector, data - encrypted object. Throws error if wrong secret key or incorrect data provided.
+* **cipherInstance.encrypt(json)** - encrypt object with secret and random initialization vector. Returns `{iv, data}` where iv - initialization vector, data - encrypted object. Throws error if json is invalid.
+* **cipherInstance.decrypt({iv, data})** - decrypt previously encrypted object. Takes `{iv, data}` as argument where iv - initialization vector, data - encrypted object. Throws error if wrong secret key or incorrect data provided.
