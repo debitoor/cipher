@@ -32,4 +32,6 @@ try {
 ### API
 * **cipher(secret)** - return cipher instance with given secret key
 * **cipherInstance.encrypt(json)** - encrypt object with secret and random initialization vector. Returns `{iv, data}` where iv - initialization vector, data - encrypted object. Throws error if json is invalid.
-* **cipherInstance.decrypt({iv, data})** - decrypt previously encrypted object. Takes `{iv, data}` as argument where iv - initialization vector, data - encrypted object. Throws error if wrong secret key or incorrect data provided.
+* **cipherInstance.decrypt({iv, data})** - decrypt previously encrypted object. Takes `{iv, data}` as argument where iv - initialization vector¹, data - encrypted object. Throws error if wrong secret key or incorrect data provided.
+
+¹ (https://nodejs.org/api/crypto.html#crypto_crypto_createcipheriv_algorithm_key_iv_options): Initialization vectors should be unpredictable and unique; ideally, they will be cryptographically random. **They do not have to be secret**: IVs are typically just added to ciphertext messages unencrypted. It may sound contradictory that something has to be unpredictable and unique, but does not have to be secret; it is important to remember that an attacker must not be able to predict ahead of time what a given IV will be.
