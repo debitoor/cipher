@@ -1,6 +1,6 @@
 {
   "name": "@debitoor/cipher",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Encrypt/decrypt data",
   "readmeFilename": "README.md",
   "main": "index.js",
@@ -34,7 +34,7 @@
     "mocha-eslint": "4.1.0"
   },
   "files": [
-	"index.js",
-	"index.d.ts"
+    "index.js",
+    "index.d.ts"
   ]
 }
