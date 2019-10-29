@@ -1,6 +1,6 @@
 {
   "name": "@debitoor/cipher",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Encrypt/decrypt data",
   "readmeFilename": "README.md",
   "main": "index.js",
