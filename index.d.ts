@@ -1,4 +1,4 @@
-declare function Cipher(secret: string): Cipher.func;
+declare function Cipher(secret: string): Cipher.context;
 export = Cipher;
 
 declare namespace Cipher {
@@ -7,7 +7,7 @@ declare namespace Cipher {
 		data: string;
 	};
 
-	export interface func {
+	export interface context {
 		encrypt: (accessToken: string) => Encrypt;
 		decrypt: (data: Encrypt) => any;
 	}
