@@ -1,11 +1,14 @@
-type Encrypt = {
-	iv: string;
-	data: string;
-}
+declare function Cipher(secret: string): Cipher.func;
+export = Cipher;
 
-interface Cipher {
-	encrypt: (accessToken: string) => Encrypt;
-	decrypt: (data: Encrypt) => any;
-}
+declare namespace Cipher {
+	export type Encrypt = {
+		iv: string;
+		data: string;
+	};
 
-export default function (secret: string): Cipher;
+	export interface func {
+		encrypt: (accessToken: string) => Encrypt;
+		decrypt: (data: Encrypt) => any;
+	}
+}
