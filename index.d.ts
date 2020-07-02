@@ -8,7 +8,7 @@ declare namespace Cipher {
 	};
 
 	export interface context {
-		encrypt: (accessToken: string) => Encrypt;
+		encrypt: (secret: string) => Encrypt;
 		decrypt: (data: Encrypt) => any;
 	}
 }
