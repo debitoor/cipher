@@ -9,6 +9,6 @@ declare namespace Cipher {
 
 	export interface context {
 		encrypt: (secret: any) => Encrypt;
-		decrypt: (data: Encrypt) => any;
+		decrypt: <T = any>(data: Encrypt) => T;
 	}
 }
